@@ -12,9 +12,8 @@ def authenticate(username, password):
 
 def main():
     parser = argparse.ArgumentParser(description='Google Reader RSS archive fetcher')
-    parser.add_argument('-u', '--username', help='user name')
-    parser.add_argument('-p', '--password', dest='password', default='UTF-8',
-                        help='account password')
+    parser.add_argument('-u', '--username', dest='username', help='user name')
+    parser.add_argument('-p', '--password', dest='password', help='account password')
 
     args = parser.parse_args()
 
