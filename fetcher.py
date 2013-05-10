@@ -14,15 +14,19 @@ def main():
     parser = argparse.ArgumentParser(description='Google Reader RSS archive fetcher')
     parser.add_argument('-u', '--username', dest='username', help='user name')
     parser.add_argument('-p', '--password', dest='password', help='account password')
-
+    parser.add_argument('-f', '--fetch', dest='fetch', help='feed number to fetch')
+    parser.add_argument('-d', '--dir', dest='dir', help='directory name to store feed contents')
     args = parser.parse_args()
 
     rdr = authenticate(args.username, args.password)
     # fetch list of feeds
     rdr.buildSubscriptionList()
 
-    for i, feed in enumerate(rdr.getSubscriptionList()):
-        print "[%d] %s" % (i, feed.title)
+    if args.fetch:
+        print "Feed to fetch:", rdr.getSubscriptionList()[int(args.fetch)]
+    else:
+        for i, feed in enumerate(rdr.getSubscriptionList()):
+            print "[%d] %s" % (i, feed.title)
 
 
 if __name__ == "__main__":
