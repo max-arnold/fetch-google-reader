@@ -10,6 +10,9 @@ def authenticate(username, password):
     auth = ClientAuthMethod(username, password)
     return GoogleReader(auth)
 
+def fetch(reader, feed):
+    print "Feed to fetch:", feed
+
 def main():
     parser = argparse.ArgumentParser(description='Google Reader RSS archive fetcher')
     parser.add_argument('-u', '--username', dest='username', help='user name')
@@ -18,14 +21,14 @@ def main():
     parser.add_argument('-d', '--dir', dest='dir', help='directory name to store feed contents')
     args = parser.parse_args()
 
-    rdr = authenticate(args.username, args.password)
+    reader = authenticate(args.username, args.password)
     # fetch list of feeds
-    rdr.buildSubscriptionList()
+    reader.buildSubscriptionList()
 
     if args.fetch:
-        print "Feed to fetch:", rdr.getSubscriptionList()[int(args.fetch)]
+        fetch(reader, reader.getSubscriptionList()[int(args.fetch)])
     else:
-        for i, feed in enumerate(rdr.getSubscriptionList()):
+        for i, feed in enumerate(reader.getSubscriptionList()):
             print "[%d] %s" % (i, feed.title)
 
 
