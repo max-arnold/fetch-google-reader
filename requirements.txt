@@ -1,2 +1,4 @@
 requests==1.2.0
 git+git://github.com/askedrelic/libgreader.git@13049b8dd2e
+ipython==0.13.2
+readline==6.2.4.1
