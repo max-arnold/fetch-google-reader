@@ -12,8 +12,22 @@ def authenticate(username, password):
     auth = ClientAuthMethod(username, password)
     return GoogleReader(auth)
 
-def fetch(reader, feed):
-    print "Feed to fetch:", feed
+def save(item, directory):
+    print item.title
+
+def fetch(reader, feed, directory, load_limit=100):
+    count = 0
+    until = None
+    while True:
+        feed.loadItems(loadLimit=load_limit, until=until)
+        if feed.countItems() == 0:
+            break
+        count += feed.countItems()
+        until = feed.items[-1].time - 1
+
+        for item in feed.items:
+            save(item, directory)
+    return count
 
 def main():
     parser = argparse.ArgumentParser(description='Google Reader RSS archive fetcher')
@@ -45,7 +59,7 @@ def main():
             os.makedirs(directory)
 
         # fetch the feed
-        fetch(reader, feed)
+        fetch(reader, feed, directory)
     else:
         # enumerate feeds
         print "* Please specify feed number (-f, --feed) to fetch: *"
