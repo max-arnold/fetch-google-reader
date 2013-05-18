@@ -12,16 +12,17 @@ Usage:
 
 1. Install fetch-google-reader
 
-    $ pip install git+git://github.com/max-arnold/fetch-google-reader.git
+    pip install git+git://github.com/max-arnold/fetch-google-reader.git
 
 2. Create directory to store your subscriptions
 
-    $ mkdir rss-backup
-    $ cd !$
-    
+    mkdir rss-backup
+    cd rss-backup
+
 3. List your subscriptions
    
-    $ fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD
+    fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD
+    
     * Please specify feed number (-f, --feed) to fetch: *
     [0] Atomized
     [1] Both Sides of the Table
@@ -31,7 +32,8 @@ Usage:
 
 4. Fetch all items from specific feed (add --starred to store only starred items)
 
-    $ fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD -f 0
+    fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD -f 0
+    
     * Output directory: atomized *
     ---> atomized/2011-05-24-i-hate-google-everything/index.html
     ---> atomized/2011-01-19-toggle-between-root-non-root-in-emacs-with-tramp/index.html
