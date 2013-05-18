@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from datetime import datetime
 import argparse
 import sys
 import os
@@ -12,8 +13,20 @@ def authenticate(username, password):
     auth = ClientAuthMethod(username, password)
     return GoogleReader(auth)
 
+def item_directory(item):
+    date = datetime.fromtimestamp(item.time)
+    slug = slugify(item.title)
+    return '%s-%s' % (date.strftime('%Y-%m-%d'), slug)
+
 def save(item, directory):
-    print item.title
+    itemdir = '%s/%s' % (directory, item_directory(item))
+    if not os.path.isdir(itemdir):
+        os.makedirs(itemdir)
+    filename = '%s/index.html' % itemdir
+    print "...%s" % filename
+    fp = open(filename, 'wb')
+    fp.write(item.content.encode('utf-8'))
+    fp.close()
 
 def fetch(feed, directory, load_limit=100):
     count = 0
