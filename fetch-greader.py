@@ -15,7 +15,7 @@ def authenticate(username, password):
 
 def item_directory(item):
     date = datetime.fromtimestamp(item.time)
-    slug = slugify(item.title)
+    slug = slugify(item.title, max_length=180, word_boundary=True)
     return '%s-%s' % (date.strftime('%Y-%m-%d'), slug)
 
 def save(item, directory):
@@ -67,7 +67,7 @@ def main():
 
         # create output directory
         if args.dir is None:
-            directory = slugify(feed.title)
+            directory = slugify(feed.title, max_length=60, word_boundary=True)
         else:
             directory = args.dir
         print "* Output directory: %s *" % directory
