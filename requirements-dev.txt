@@ -1,0 +1,2 @@
+ipython==0.13.2
+readline==6.2.4.1
