@@ -14,6 +14,7 @@ I. Install fetch-google-reader
 
 ```
 pip install git+git://github.com/max-arnold/fetch-google-reader.git
+curl -s -k https://raw.github.com/max-arnold/fetch-google-reader/master/requirements.txt | xargs -n 1 pip install
 ```
 
 II. Create directory to store your subscriptions
