@@ -19,7 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description='Google Reader RSS archive fetcher')
     parser.add_argument('-u', '--username', dest='username', help='user name')
     parser.add_argument('-p', '--password', dest='password', help='account password')
-    parser.add_argument('-f', '--fetch', dest='fetch', help='feed number to fetch')
+    parser.add_argument('-f', '--feed', dest='feed', help='feed number to fetch')
     parser.add_argument('-d', '--dir', dest='dir', help='directory name to store feed contents')
     args = parser.parse_args()
 
@@ -32,8 +32,8 @@ def main():
     # fetch list of feeds
     reader.buildSubscriptionList()
 
-    if args.fetch:
-        feed = reader.getSubscriptionList()[int(args.fetch)]
+    if args.feed:
+        feed = reader.getSubscriptionList()[int(args.feed)]
 
         # create output directory
         if args.dir is None:
@@ -47,6 +47,8 @@ def main():
         # fetch the feed
         fetch(reader, feed)
     else:
+        # enumerate feeds
+        print "* Please specify feed number (-f, --feed) to fetch: *"
         for i, feed in enumerate(reader.getSubscriptionList()):
             print "[%d] %s" % (i, feed.title)
 
