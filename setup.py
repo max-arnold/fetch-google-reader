@@ -12,8 +12,6 @@ setup(
     name='fetch-google-reader',
     version=__version__,
 
-    # Package dependencies.
-    install_requires=['requests==1.2.0', 'python-slugify==0.0.4', 'libgreader==0.7.0'],
     # Metadata for PyPI.
     author='Max Arnold',
     author_email='arnold.maxim@gmail.com',
