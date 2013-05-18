@@ -23,12 +23,12 @@ def save(item, directory):
     if not os.path.isdir(itemdir):
         os.makedirs(itemdir)
     filename = '%s/index.html' % itemdir
-    print "...%s" % filename
+    print "---> %s" % filename
     fp = open(filename, 'wb')
     fp.write(item.content.encode('utf-8'))
     fp.close()
 
-def fetch(feed, directory, load_limit=100):
+def fetch(feed, directory, starred=False, load_limit=100):
     count = 0
     until = None
     while True:
@@ -39,7 +39,8 @@ def fetch(feed, directory, load_limit=100):
         until = feed.items[-1].time - 1
 
         for item in feed.items:
-            save(item, directory)
+            if not starred or item.starred:
+                save(item, directory)
     return count
 
 def main():
@@ -47,6 +48,8 @@ def main():
     parser.add_argument('-u', '--username', dest='username', help='user name')
     parser.add_argument('-p', '--password', dest='password', help='account password')
     parser.add_argument('-f', '--feed', dest='feed', help='feed number to fetch')
+    parser.add_argument('-s', '--starred', dest='starred', action='store_true',
+                        default=False, help='store only starred items')
     parser.add_argument('-d', '--dir', dest='dir', help='directory name to store feed contents')
     args = parser.parse_args()
 
@@ -72,7 +75,7 @@ def main():
             os.makedirs(directory)
 
         # fetch the feed
-        fetch(feed, directory)
+        fetch(feed, directory, starred=args.starred)
     else:
         # enumerate feeds
         print "* Please specify feed number (-f, --feed) to fetch: *"
