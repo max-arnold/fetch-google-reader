@@ -3,9 +3,10 @@
 from __future__ import unicode_literals
 import argparse
 import sys
+import os
 
 from libgreader import GoogleReader, ClientAuthMethod, Feed
-
+from slugify import slugify
 
 def authenticate(username, password):
     auth = ClientAuthMethod(username, password)
@@ -32,7 +33,19 @@ def main():
     reader.buildSubscriptionList()
 
     if args.fetch:
-        fetch(reader, reader.getSubscriptionList()[int(args.fetch)])
+        feed = reader.getSubscriptionList()[int(args.fetch)]
+
+        # create output directory
+        if args.dir is None:
+            directory = slugify(feed.title)
+        else:
+            directory = args.dir
+        print "* Output directory: %s *" % directory
+        if not os.path.isdir(directory):
+            os.makedirs(directory)
+
+        # fetch the feed
+        fetch(reader, feed)
     else:
         for i, feed in enumerate(reader.getSubscriptionList()):
             print "[%d] %s" % (i, feed.title)
