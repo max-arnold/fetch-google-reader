@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import argparse
+import sys
 
 from libgreader import GoogleReader, ClientAuthMethod, Feed
 
@@ -20,6 +21,11 @@ def main():
     parser.add_argument('-f', '--fetch', dest='fetch', help='feed number to fetch')
     parser.add_argument('-d', '--dir', dest='dir', help='directory name to store feed contents')
     args = parser.parse_args()
+
+    if None in (args.username, args.password):
+        print "* Please specify username and password *\n"
+        parser.print_help()
+        sys.exit(1)
 
     reader = authenticate(args.username, args.password)
     # fetch list of feeds
