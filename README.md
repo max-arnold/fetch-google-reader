@@ -1,5 +1,5 @@
 Backup full-text RSS content from Google Reader 
-===============================================
+-----------------------------------------------
 
 Google Reader will be shut down soon: http://googlereader.blogspot.com/2013/03/powering-down-google-reader.html
 
