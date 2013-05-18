@@ -1,4 +1,4 @@
-Backup full-text RSS content from Google Reader 
+Backup full-text RSS content from Google Reader
 -----------------------------------------------
 
 Google Reader will be shut down soon: http://googlereader.blogspot.com/2013/03/powering-down-google-reader.html
@@ -54,3 +54,9 @@ fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD -f 0
 ```
 
 Items are stored in subdirectory named after item title, you can override this with --dir argument.
+
+
+habrahabr.ru article
+--------------------
+
+http://habrahabr.ru/post/180111/
