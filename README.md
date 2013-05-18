@@ -10,20 +10,20 @@ It stores article content avalable via Reader API in html format (no images or s
 
 Usage:
 
-1. Install fetch-google-reader
+I. Install fetch-google-reader
 
 ```
 pip install git+git://github.com/max-arnold/fetch-google-reader.git
 ```
 
-2. Create directory to store your subscriptions
+II. Create directory to store your subscriptions
 
 ```
 mkdir rss-backup
 cd rss-backup
 ```
 
-3. List your subscriptions
+III. List your subscriptions
    
 ```
 fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD
@@ -36,7 +36,7 @@ fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD
 [4] хабрахабр: главная / захабренные
 ```
 
-4. Fetch all items from specific feed (add --starred to store only starred items)
+IV. Fetch all items from specific feed (add --starred to store only starred items)
 
 ```
 fetch-greader.py -u YOUR-USERNAME@gmail.com -p YOUR-PASSWORD -f 0
