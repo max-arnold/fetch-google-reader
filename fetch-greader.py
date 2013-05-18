@@ -80,7 +80,7 @@ def main():
         # enumerate feeds
         print "* Please specify feed number (-f, --feed) to fetch: *"
         for i, feed in enumerate(reader.getSubscriptionList()):
-            print "[%d] %s" % (i, feed.title)
+            print "[%d]" % (i), feed.title.encode('utf-8')
 
 
 if __name__ == "__main__":
