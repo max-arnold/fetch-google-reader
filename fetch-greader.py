@@ -25,7 +25,7 @@ def save(item, directory):
     filename = '%s/index.html' % itemdir
     print "---> %s" % filename
     fp = open(filename, 'wb')
-    fp.write('<h3><a href="{}">{}</a></h3>\n'.format(item.url, item.title).encode('utf-8'))
+    fp.write('<h3><a href="{0}">{1}</a></h3>\n'.format(item.url, item.title).encode('utf-8'))
     fp.write(item.content.encode('utf-8'))
     fp.close()
 
@@ -81,7 +81,7 @@ def main():
         # enumerate feeds
         print "* Please specify feed number (-f, --feed) to fetch: *"
         for i, feed in enumerate(reader.getSubscriptionList()):
-            print "[{}] {} [{}]".format(i, feed.title, feed.feedUrl).encode('utf-8')
+            print "[{0}] {1} [{2}]".format(i, feed.title, feed.feedUrl).encode('utf-8')
 
 
 if __name__ == "__main__":
