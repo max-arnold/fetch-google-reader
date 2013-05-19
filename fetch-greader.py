@@ -25,7 +25,7 @@ def save(item, directory):
     filename = '%s/index.html' % itemdir
     print "---> %s" % filename
     fp = open(filename, 'wb')
-    fp.write("<h3>" + item.title.encode('utf-8') + "</h3>")
+    fp.write('<h3><a href="{}">{}</a></h3>\n'.format(item.url, item.title).encode('utf-8'))
     fp.write(item.content.encode('utf-8'))
     fp.close()
 
