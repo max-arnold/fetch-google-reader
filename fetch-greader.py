@@ -9,6 +9,18 @@ import os
 from libgreader import GoogleReader, ClientAuthMethod, Feed
 from slugify import slugify
 
+OUTPUT_TEMPLATE = u"""
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8" />
+<title>{1}</title>
+</head>
+<body>
+<h3><a href="{0}">{1}</a></h3>\n
+</body>
+</html>
+"""
+
 def authenticate(username, password):
     auth = ClientAuthMethod(username, password)
     return GoogleReader(auth)
@@ -25,7 +37,7 @@ def save(item, directory):
     filename = '%s/index.html' % itemdir
     print "---> %s" % filename
     fp = open(filename, 'wb')
-    fp.write('<h3><a href="{0}">{1}</a></h3>\n'.format(item.url, item.title).encode('utf-8'))
+    fp.write(OUTPUT_TEMPLATE.format(item.url, item.title).encode('utf-8'))
     fp.write(item.content.encode('utf-8'))
     fp.close()
 
